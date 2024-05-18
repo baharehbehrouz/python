@@ -1,0 +1,39 @@
+import turtle
+import random
+
+# تنظیمات اولیه
+turtle.bgcolor("black")
+pen = turtle.Turtle()
+pen.speed(0)  # حداکثر سرعت
+
+# تعریف رنگ‌ها
+colors = ["green", "red", "yellow", "orange", "blue", "purple"]
+
+# دریافت تعداد ضلع‌ها از کاربر
+sides = turtle.numinput("تعداد ضلع‌ها", "تعداد ضلع‌های شکل را وارد کنید:", 5, 1, 10)
+
+# تعیین زاویه چرخش برای هر شکل
+angle = 360 / sides
+
+# رسم شکل
+for i in range(50):
+    pen.pencolor(random.choice(colors))  # انتخاب رنگ تصادفی
+    pen.forward(i * 3)  # حرکت به جلو
+    pen.left(angle + 1)  # چرخش به چپ
+    pen.width(i * sides / 100)  # تغییر ضخامت خط
+
+    # اضافه کردن یک شکل دیگر در هر مرحله
+    for j in range(int(sides)):
+        pen.forward(100)
+        pen.left(angle)
+    
+    # چرخش شکل به دور مرکز
+    pen.penup()  # قلم را بلند کن
+    pen.goto(0, 0)  # به مرکز برو
+    pen.pendown()  # قلم را پایین بگذار
+    pen.left(angle)  # چرخش به چپ
+
+    # تغییر محور چرخش برای شکل بعدی
+    pen.right(angle / 2)  # چرخش به راست
+
+turtle.done()
